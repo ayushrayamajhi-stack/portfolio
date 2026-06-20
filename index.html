@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ayush Rayamajhi — Front-End Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;--bg2:#f8fafc;--bg3:#f1f5f9;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --accent:#2563eb;--accent2:#1d4ed8;
+  --accent-bg:#eff6ff;--accent-bd:#bfdbfe;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --green:#16a34a;--green-bg:#f0fdf4;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+  --r:8px;--rl:14px;
+  --sh:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shm:0 4px 20px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+nav.scrolled{box-shadow:var(--sh)}
+.nw{max-width:1040px;margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;font-size:18px;letter-spacing:-.6px;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+.nl{display:flex;gap:4px;list-style:none;align-items:center}
+.nl a{font-size:13.5px;font-weight:500;color:var(--text2);text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s}
+.nl a:hover{color:var(--text);background:var(--bg2)}
+.nl a.active{color:var(--accent)}
+.ncta{background:var(--accent)!important;color:#fff!important;font-weight:600!important;border-radius:7px!important;padding:7px 16px!important;font-size:13px!important;transition:background .15s,transform .15s!important}
+.ncta:hover{background:var(--accent2)!important;transform:translateY(-1px)!important}
+.ham{display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--text)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:80px 28px 0;position:relative;overflow:hidden}
+.hbg1{position:absolute;top:-180px;right:-180px;width:560px;height:560px;background:radial-gradient(circle,rgba(37,99,235,.07) 0%,transparent 70%);pointer-events:none}
+.hbg2{position:absolute;bottom:-80px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(37,99,235,.04) 0%,transparent 70%);pointer-events:none}
+.hi{max-width:1040px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center}
+
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-bg);border:1px solid #bbf7d0;color:var(--green);font-size:12.5px;font-weight:600;padding:5px 13px;border-radius:20px;margin-bottom:24px}
+.bdot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:ping 2s ease infinite}
+@keyframes ping{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+.hname{font-size:clamp(40px,5.5vw,62px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:16px}
+.hname .w2{color:var(--accent)}
+.cur{display:inline-block;width:3px;height:.8em;background:var(--accent);border-radius:1px;vertical-align:text-bottom;margin-left:3px;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hrole{font-size:16px;font-weight:500;color:var(--accent);font-family:var(--mono);margin-bottom:18px;letter-spacing:-.2px}
+.hdesc{font-size:16px;line-height:1.78;color:var(--text2);max-width:480px;margin-bottom:34px}
+.hbtns{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:42px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--r);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;border:1.5px solid transparent;font-family:var(--sans)}
+.bp{background:var(--accent);color:#fff;border-color:var(--accent)}
+.bp:hover{background:var(--accent2);border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,.28)}
+.bo{background:transparent;color:var(--text);border-color:var(--border2)}
+.bo:hover{border-color:var(--text);transform:translateY(-2px)}
+.hmeta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hmi{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text3)}
+
+/* hero code card */
+.hcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:26px;box-shadow:var(--shm)}
+.hch{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.dots{display:flex;gap:5px}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.clbl{font-size:11px;color:var(--text3);font-family:var(--mono);margin-left:auto}
+.clines{display:flex;flex-direction:column;gap:6px}
+.cl{display:flex;align-items:flex-start;gap:10px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
+.ln{color:var(--text3);font-size:11px;min-width:18px;user-select:none;margin-top:1px}
+.k{color:#7c3aed}.s{color:#16a34a}.p{color:var(--text2)}.c{color:var(--accent)}.n{color:#dc2626}
+
+/* SHARED */
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+section{padding:90px 0}
+.stag{font-size:11.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.stag::before{content:'';width:22px;height:2px;background:var(--accent);border-radius:1px}
+.sh2{font-size:clamp(24px,3.5vw,32px);font-weight:800;letter-spacing:-.8px;color:var(--text);margin-bottom:8px}
+.ssub{font-size:15.5px;color:var(--text2);max-width:500px;line-height:1.65;margin-bottom:50px}
+
+/* fade */
+.fade{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
+.fade.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.at p{font-size:15.5px;line-height:1.8;color:var(--text2);margin-bottom:18px}
+.at p:last-child{margin:0}
+.at strong{color:var(--text);font-weight:600}
+.acards{display:flex;flex-direction:column;gap:13px}
+.acard{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:19px 21px;display:flex;align-items:flex-start;gap:14px}
+.aico{width:40px;height:40px;border-radius:var(--r);background:var(--accent-bg);border:1px solid var(--accent-bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent)}
+.at2{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.ad2{font-size:13px;color:var(--text2);line-height:1.5}
+
+/* SKILLS */
+.skgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:24px;transition:border-color .2s,box-shadow .2s}
+.skcard:hover{border-color:var(--accent-bd);box-shadow:var(--sh)}
+.sktitle{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin-bottom:15px;display:flex;align-items:center;gap:8px}
+.sktitle::after{content:'';flex:1;height:1px;background:var(--border)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13px;font-weight:500;padding:5px 13px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--text);transition:all .15s;cursor:default}
+.tag:hover{border-color:var(--accent-bd);background:var(--accent-bg);color:var(--accent)}
+.tag.lrn{background:var(--accent-bg);border-color:var(--accent-bd);color:var(--accent);font-family:var(--mono);font-size:12px}
+
+/* PROJECTS */
+#projects{background:var(--bg2)}
+.pgrid{display:flex;flex-direction:column;gap:18px}
+.pcard{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;display:grid;grid-template-columns:60px 1fr 52px;transition:border-color .25s,transform .25s,box-shadow .25s;text-decoration:none;color:inherit}
+.pcard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shm)}
+.pnum{background:var(--bg2);border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text3);flex-shrink:0;transition:background .25s,color .25s;writing-mode:vertical-rl;letter-spacing:1px}
+.pcard:hover .pnum{background:var(--accent-bg);color:var(--accent)}
+.pbody{padding:26px 28px}
+.plbl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.pname{font-size:18px;font-weight:700;letter-spacing:-.4px;color:var(--text);margin-bottom:10px}
+.pdesc{font-size:14.5px;color:var(--text2);line-height:1.65;margin-bottom:16px}
+.pstack{display:flex;flex-wrap:wrap;gap:7px}
+.ptag{font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px;background:var(--bg2);border:1px solid var(--border);color:var(--text2)}
+.parrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;border-left:1px solid var(--border);background:var(--bg)}
+.parrow svg{color:var(--text3);transition:color .25s,transform .25s}
+.pcard:hover .parrow svg{color:var(--accent);transform:translate(3px,-3px)}
+
+/* EXPERIENCE */
+.eitem{display:grid;grid-template-columns:120px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--border)}
+.eitem:first-child{padding-top:0}.eitem:last-child{border:none;padding-bottom:0}
+.edate{font-size:13px;color:var(--text3);font-family:var(--mono);line-height:1.65}
+.erole{font-size:17px;font-weight:700;color:var(--text);margin-bottom:4px;letter-spacing:-.3px}
+.eco{font-size:14px;color:var(--accent);font-weight:600;margin-bottom:14px}
+.ebullets{display:flex;flex-direction:column;gap:8px}
+.eb{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--text2);line-height:1.6}
+.eb::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent-bd);flex-shrink:0;margin-top:8px}
+
+/* EDUCATION */
+#education{background:var(--bg2)}
+.edugrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.educard{background:var(--bg);border:1px solid var(--border);border-radius:var(--rl);padding:26px 24px;position:relative;overflow:hidden}
+.educard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.edudeg{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.4}
+.edusch{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:4px}
+.edupd{font-size:12px;color:var(--text3);font-family:var(--mono);margin-bottom:14px}
+.edunote{font-size:13px;color:var(--text2);line-height:1.5;padding-top:12px;border-top:1px solid var(--border)}
+
+/* CONTACT */
+.cbox{background:var(--text);border-radius:20px;padding:60px 52px;text-align:center}
+.cbox .stag{color:#60a5fa;justify-content:center}.cbox .stag::before{background:#60a5fa}
+.cbox .sh2{color:#fff;margin-bottom:14px}
+.cbox .ssub{color:#94a3b8;margin:0 auto 40px}
+.clinks{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.bw{background:#fff;color:var(--text);border-color:#fff}.bw:hover{background:#f1f5f9;transform:translateY(-2px)}
+.bgw{background:transparent;color:#fff;border-color:rgba(255,255,255,.2)}.bgw:hover{border-color:#fff;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:26px;text-align:center;font-size:13px;color:var(--text3)}
+footer a{color:var(--text2);text-decoration:none}
+footer a:hover{color:var(--accent)}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hi{grid-template-columns:1fr;gap:32px}
+  .hcard{order:-1}
+  .hname{font-size:38px}
+  .nl{display:none;position:fixed;top:58px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;gap:0;padding:10px}
+  .nl.open{display:flex}
+  .nl li a{padding:12px 20px;border-radius:0;display:block}
+  .ham{display:flex}
+  .ag{grid-template-columns:1fr}
+  .skgrid{grid-template-columns:1fr}
+  .edugrid{grid-template-columns:1fr}
+  .pcard{grid-template-columns:1fr}
+  .pnum{writing-mode:horizontal-tb;height:40px;width:100%;border-right:none;border-bottom:1px solid var(--border)}
+  .parrow{display:none}
+  .eitem{grid-template-columns:1fr;gap:8px}
+  .cbox{padding:40px 22px}
+  section{padding:60px 0}
+}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nw">
+    <a href="#hero" class="logo">ayush<span>.</span></a>
+    <ul class="nl" id="nl">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact" class="btn bp ncta">Hire me</a></li>
+    </ul>
+    <button class="ham" id="ham" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hbg1"></div><div class="hbg2"></div>
+  <div class="hi">
+    <div>
+      <div class="badge"><span class="bdot"></span>Open to front-end internships</div>
+      <h1 class="hname">Ayush<br><span class="w2">Rayamajhi</span><span class="cur"></span></h1>
+      <p class="hrole">// front-end developer in training</p>
+      <p class="hdesc">I build clean, fast, responsive websites with HTML, CSS &amp; JavaScript. CS student in Kathmandu — learning React, looking for a team to grow with.</p>
+      <div class="hbtns">
+        <a href="#projects" class="btn bp">View my work <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="Ayush_Rayamajhi_CV.pdf" download class="btn bo"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download CV</a>
+        <a href="#contact" class="btn bo">Let's talk</a>
+      </div>
+      <div class="hmeta">
+        <span class="hmi"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Kathmandu, Nepal</span>
+        <span class="hmi"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.37.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>ayushrayamajhi-stack</span>
+      </div>
+    </div>
+    <div class="hcard fade">
+      <div class="hch"><div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div><span class="clbl">about-me.js</span></div>
+      <div class="clines">
+        <div class="cl"><span class="ln">1</span><span><span class="k">const</span> <span class="c">developer</span> <span class="p">= {</span></span></div>
+        <div class="cl"><span class="ln">2</span><span>&nbsp;&nbsp;<span class="s">name</span><span class="p">:</span> <span class="n">"Ayush Rayamajhi"</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">3</span><span>&nbsp;&nbsp;<span class="s">role</span><span class="p">:</span> <span class="n">"Front-End Intern"</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">4</span><span>&nbsp;&nbsp;<span class="s">skills</span><span class="p">: [</span><span class="n">"HTML"</span><span class="p">,</span> <span class="n">"CSS"</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">5</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">"JavaScript"</span><span class="p">,</span> <span class="n">"Python"</span><span class="p">],</span></span></div>
+        <div class="cl"><span class="ln">6</span><span>&nbsp;&nbsp;<span class="s">learning</span><span class="p">:</span> <span class="n">"React"</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">7</span><span>&nbsp;&nbsp;<span class="s">location</span><span class="p">:</span> <span class="n">"Kathmandu, Nepal"</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">8</span><span>&nbsp;&nbsp;<span class="s">available</span><span class="p">:</span> <span class="k">true</span><span class="p">,</span></span></div>
+        <div class="cl"><span class="ln">9</span><span>&nbsp;&nbsp;<span class="s">goal</span><span class="p">:</span> <span class="n">"Build. Learn. Grow."</span></span></div>
+        <div class="cl"><span class="ln">10</span><span><span class="p">};</span></span></div>
+        <div class="cl" style="margin-top:6px"><span class="ln">12</span><span><span class="k">export default</span> <span class="c">developer</span><span class="p">;</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="fade"><p class="stag">About me</p><h2 class="sh2">A developer who understands the code</h2><p class="ssub">Not just copy-paste. I build things, break them, and learn exactly why they broke.</p></div>
+    <div class="ag">
+      <div class="at fade d1">
+        <p>I'm a <strong>diploma graduate in IT</strong> and currently studying for a <strong>BSc Computer Science (Hons) at LBEF, Kathmandu</strong>. My journey started with Python during a real internship — then I discovered front-end and haven't looked back.</p>
+        <p>I completed <strong>5 months as a Python Developer Intern at Kurma Tech</strong>, writing automation scripts, managing SQL databases, and learning what it actually means to collaborate on code in a professional environment.</p>
+        <p>Every project I build, I make sure I understand <strong>every single line</strong> — what it does, why it's there, and how to improve it. That's the mindset I bring to a team.</p>
+        <p>Away from code: chess, Valorant, table tennis, classic novels, and guitar.</p>
+      </div>
+      <div class="acards fade d2">
+        <div class="acard">
+          <div class="aico"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div><div class="at2">5 months internship</div><div class="ad2">Real Python development at Kurma Tech — automation, SQL, teamwork.</div></div>
+        </div>
+        <div class="acard">
+          <div class="aico"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div><div class="at2">Diploma + BSc CS</div><div class="ad2">Strong academic base — best student, programming project winner.</div></div>
+        </div>
+        <div class="acard">
+          <div class="aico"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <div><div class="at2">3 personal projects</div><div class="ad2">Portfolio, To-Do App, Weather App — all built from scratch on GitHub.</div></div>
+        </div>
+        <div class="acard">
+          <div class="aico"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="at2">Actively learning</div><div class="ad2">React, responsive design, APIs — learning every day and building as I go.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="fade"><p class="stag">Skills</p><h2 class="sh2">What I know — and what I'm learning</h2><p class="ssub">Honest. No inflated skill bars. Just what I actually use and build with.</p></div>
+    <div class="skgrid">
+      <div class="skcard fade d1"><div class="sktitle">Front-End</div><div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript (ES6+)</span><span class="tag">Responsive Design</span><span class="tag">Flexbox</span><span class="tag">CSS Grid</span><span class="tag lrn">React ↗ learning</span></div></div>
+      <div class="skcard fade d2"><div class="sktitle">Back-End & Database</div><div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">REST APIs</span><span class="tag">async / await</span></div></div>
+      <div class="skcard fade d3"><div class="sktitle">Tools & Workflow</div><div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">GitHub Pages</span><span class="tag">Chrome DevTools</span></div></div>
+      <div class="skcard fade d4"><div class="sktitle">Soft Skills</div><div class="tags"><span class="tag">Team Collaboration</span><span class="tag">Communication</span><span class="tag">Problem Solving</span><span class="tag">Quick Learner</span><span class="tag">Attention to Detail</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="fade"><p class="stag">Projects</p><h2 class="sh2">Things I've built — and understand</h2><p class="ssub">Small projects, written properly. I can walk through every line of code in an interview.</p></div>
+    <div class="pgrid">
+      <a href="https://github.com/ayushrayamajhi-stack/portfolio" target="_blank" rel="noopener" class="pcard fade d1">
+        <div class="pnum">01</div>
+        <div class="pbody">
+          <div class="plbl">Portfolio · Live on GitHub Pages</div>
+          <div class="pname">Personal Portfolio Website</div>
+          <div class="pdesc">Designed and built from scratch — no templates, no frameworks. Focused on clean layout, scroll animations, and fully responsive design across all screen sizes.</div>
+          <div class="pstack"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span><span class="ptag">CSS Animations</span><span class="ptag">GitHub Pages</span></div>
+        </div>
+        <div class="parrow"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a href="https://github.com/ayushrayamajhi-stack/todo-app" target="_blank" rel="noopener" class="pcard fade d2">
+        <div class="pnum">02</div>
+        <div class="pbody">
+          <div class="plbl">App · Vanilla JavaScript</div>
+          <div class="pname">To-Do App</div>
+          <div class="pdesc">Full task manager with add, complete, delete, and filter. Uses localStorage so tasks persist after refresh. Taught me DOM manipulation, event listeners, and JS state management.</div>
+          <div class="pstack"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">localStorage</span><span class="ptag">DOM API</span></div>
+        </div>
+        <div class="parrow"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+      <a href="https://github.com/ayushrayamajhi-stack/weather-app" target="_blank" rel="noopener" class="pcard fade d3">
+        <div class="pnum">03</div>
+        <div class="pbody">
+          <div class="plbl">API Integration · Async JavaScript</div>
+          <div class="pname">Weather App</div>
+          <div class="pdesc">Live weather from OpenWeatherMap API. Search any city for real-time temperature, conditions, and humidity. Taught me REST APIs, async/await, fetch(), and graceful error handling.</div>
+          <div class="pstack"><span class="ptag">JavaScript</span><span class="ptag">REST API</span><span class="ptag">async/await</span><span class="ptag">fetch()</span><span class="ptag">OpenWeatherMap</span></div>
+        </div>
+        <div class="parrow"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="fade"><p class="stag">Experience</p><h2 class="sh2">Real work, real team</h2><p class="ssub">5 months of professional internship before my first year of university.</p></div>
+    <div class="fade d1">
+      <div class="eitem">
+        <div class="edate">Mar 2024<br>– Aug 2024</div>
+        <div>
+          <div class="erole">Python Developer Intern</div>
+          <div class="eco">Kurma Tech · Kathmandu, Nepal</div>
+          <div class="ebullets">
+            <div class="eb">Developed Python scripts for automation and data processing, reducing manual effort</div>
+            <div class="eb">Wrote and optimised SQL queries to retrieve and update data across multiple tables</div>
+            <div class="eb">Assisted in database schema design and optimisation for application requirements</div>
+            <div class="eb">Collaborated daily with team members using Git and participated in code reviews</div>
+            <div class="eb">Tested and debugged application features to improve reliability</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="fade"><p class="stag">Education</p><h2 class="sh2">Academic background</h2><p class="ssub">A solid CS foundation built over several years of study.</p></div>
+    <div class="edugrid">
+      <div class="educard fade d1"><div class="edudeg">BSc Computer Science (Hons)</div><div class="edusch">LBEF, Kathmandu</div><div class="edupd">2025 – Present</div><div class="edunote">Focusing on software engineering and web development. Currently enrolled.</div></div>
+      <div class="educard fade d2"><div class="edudeg">Diploma in Information Technology</div><div class="edusch">Kankai Polytechnic Institute, Surunga</div><div class="edupd">2019 – 2023</div><div class="edunote">🏆 Best Student of the Year · Best Programming Project · Team Leader, Final Year</div></div>
+      <div class="educard fade d3"><div class="edudeg">+2 Higher Secondary</div><div class="edusch">Amity Education Foundation, Birtamode</div><div class="edupd">2019 – 2021</div><div class="edunote">Science stream — foundational studies before CS specialisation.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cbox fade">
+      <p class="stag">Contact</p>
+      <h2 class="sh2">Let's build something together</h2>
+      <p class="ssub">Looking for a front-end internship. If you need someone eager, honest, and a fast learner — reach out.</p>
+      <div class="clinks">
+        <a href="mailto:its.ayushrayamajhi@gmail.com" class="btn bw"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email me</a>
+        <a href="https://github.com/ayushrayamajhi-stack" target="_blank" rel="noopener" class="btn bgw"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.37.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a href="Ayush_Rayamajhi_CV.pdf" download class="btn bgw"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Built by <a href="#hero">Ayush Rayamajhi</a> · HTML, CSS &amp; JavaScript · No frameworks · <a href="https://github.com/ayushrayamajhi-stack" target="_blank" rel="noopener">View source on GitHub ↗</a></div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const ham=document.getElementById('ham');
+const nl=document.getElementById('nl');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+ham.addEventListener('click',()=>nl.classList.toggle('open'));
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+const secs=document.querySelectorAll('section[id]');
+const lks=document.querySelectorAll('.nl a:not(.ncta)');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(scrollY>=s.offsetTop-90)c=s.id});lks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+c))});
+</script>
+</body>
+</html>
